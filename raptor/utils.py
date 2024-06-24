@@ -24,20 +24,17 @@ def split_text(
 ):
     """
     Splits the input text into smaller chunks based on the tokenizer and maximum allowed tokens.
-    
     Args:
         text (str): The text to be split.
         tokenizer (CustomTokenizer): The tokenizer to be used for splitting the text.
         max_tokens (int): The maximum allowed tokens.
         overlap (int, optional): The number of overlapping tokens between chunks. Defaults to 0.
-    
     Returns:
         List[str]: A list of text chunks.
     """
     # Split the text into sentences using multiple delimiters
     delimiters = [".", "!", "?", "\n"]
     regex_pattern = "|".join(map(re.escape, delimiters))
-
     chunks = []
     for text in essay:
         sentences = re.split(regex_pattern, text)
