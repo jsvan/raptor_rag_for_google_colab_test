@@ -36,7 +36,7 @@ def split_text(
     delimiters = [".", "!", "?", "\n"]
     regex_pattern = "|".join(map(re.escape, delimiters))
     chunks = []
-    for text in essay:
+    for text in essays:
         sentences = re.split(regex_pattern, text)
         # Calculate the number of tokens for each sentence
         n_tokens = [len(tokenizer.encode(" " + sentence)) for sentence in sentences]
