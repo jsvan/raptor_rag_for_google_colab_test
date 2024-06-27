@@ -277,7 +277,7 @@ class TreeBuilder:
             leaf_nodes = self.multithreaded_create_leaf_nodes(chunks)
         else:
             leaf_nodes = {}
-            for index, text in tqdm(enumerate(chunks), total=len(chunks):
+            for index, text in tqdm(enumerate(chunks), total=len(chunks)):
                 __, node = self.create_node(index, text)
                 leaf_nodes[index] = node
 
