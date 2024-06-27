@@ -270,7 +270,7 @@ class TreeBuilder:
         """
         chunks = split_text(text, self.tokenizer, self.max_tokens)
 
-        logging.info("Creating Leaf Nodes")
+        print("Creating Leaf Nodes")
 
         if use_multithreading:
             leaf_nodes = self.multithreaded_create_leaf_nodes(chunks)
@@ -282,16 +282,16 @@ class TreeBuilder:
 
         layer_to_nodes = {0: list(leaf_nodes.values())}
 
-        logging.info(f"Created {len(leaf_nodes)} Leaf Embeddings")
+        print(f"Created {len(leaf_nodes)} Leaf Embeddings")
 
-        logging.info("Building All Nodes")
+        print("Building All Nodes")
 
         all_nodes = copy.deepcopy(leaf_nodes)
-
+        print("Constructing tree")
         root_nodes = self.construct_tree(all_nodes, all_nodes, layer_to_nodes)
-
+        print("finished construction. Wrapping in Tree...?)
         tree = Tree(all_nodes, root_nodes, leaf_nodes, self.num_layers, layer_to_nodes)
-
+        print("Finished tree")
         return tree
 
     @abstractclassmethod
