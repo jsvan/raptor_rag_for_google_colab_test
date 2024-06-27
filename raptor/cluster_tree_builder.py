@@ -1,6 +1,5 @@
 import logging
 import pickle
-from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
 from threading import Lock
 from typing import Dict, List, Set
@@ -85,7 +84,7 @@ class ClusterTreeBuilder(TreeBuilder):
             with lock:
                 new_level_nodes[next_node_index] = new_parent_node
 
-        for layer in tqdm(range(self.num_layers)):
+        for layer in range(self.num_layers):
 
             new_level_nodes = {}
 
