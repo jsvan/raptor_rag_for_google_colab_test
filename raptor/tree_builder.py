@@ -172,9 +172,8 @@ class TreeBuilder:
         if children_indices is None:
             children_indices = set()
           
-        print(type(self.embedding_models.items()))
-        print(type(self.embedding_models.items()[0]))
-        print(type(self.embedding_models.items()[0][0]))
+        print(type(list(self.embedding_models.items())[0]))
+        print(type(list(self.embedding_models.items())[0][0]))
 
         embeddings = {
             model_name: model.create_embedding(text)
