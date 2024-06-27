@@ -252,7 +252,7 @@ class TreeBuilder:
             }
 
             leaf_nodes = {}
-            for future in tqdm(as_completed(future_nodes), total=len(future_nodes):
+            for future in as_completed(future_nodes):
                 index, node = future.result()
                 leaf_nodes[index] = node
 
