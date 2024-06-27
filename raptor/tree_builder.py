@@ -289,7 +289,7 @@ class TreeBuilder:
         all_nodes = copy.deepcopy(leaf_nodes)
         print("Constructing tree")
         root_nodes = self.construct_tree(all_nodes, all_nodes, layer_to_nodes)
-        print("finished construction. Wrapping in Tree...?)
+        print("finished construction. Wrapping in Tree...?")
         tree = Tree(all_nodes, root_nodes, leaf_nodes, self.num_layers, layer_to_nodes)
         print("Finished tree")
         return tree
