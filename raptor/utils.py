@@ -76,7 +76,9 @@ def split_text(
     for essay in essays:
         chunks.extend(essay.split('\n'))
     print('done chunking! Have length of', len(chunks), 'chunks.')
-    return recursively_split_paragraphs(chunks, 1500)
+    finaltexts = recursively_split_paragraphs(chunks, 1500)
+    print("Finished preparing texts. Length of", len(finaltexts))
+    return finaltexts
 
 
     """
