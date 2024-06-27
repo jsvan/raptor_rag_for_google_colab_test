@@ -215,9 +215,11 @@ class RetrievalAugmentation:
             if user_input.lower() == "y":
                 # self.add_to_existing(docs)
                 return
-
+        print("Add documents, tree builder from text")
         self.tree = self.tree_builder.build_from_text(text=docs)
+        print("Tree Retriever:")
         self.retriever = TreeRetriever(self.tree_retriever_config, self.tree)
+        print("Finished add_documents")
 
     def retrieve(
         self,
