@@ -55,7 +55,7 @@ def recursively_split_paragraphs(paragraph_list, maxlen=1500):
         elif len(test_subject) < 150:
             pass
         else:
-            good.append(test_subject)
+            good.append(test_subject.encode('ascii',errors='ignore'))
     return good
 
     
@@ -78,6 +78,7 @@ def split_text(
     print('done chunking! Have length of', len(chunks), 'chunks.')
     finaltexts = recursively_split_paragraphs(chunks, 1500)
     print("Finished preparing texts. Length of", len(finaltexts))
+    
     return finaltexts
 
 
