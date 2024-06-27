@@ -44,7 +44,7 @@ def recursively_split_paragraphs(paragraph_list, maxlen=1500):
     good = []
     bad = paragraph_list
     while len(bad) > 0:
-        test_subject = bad.pop()
+        test_subject = bad.pop().strip()
         if len(test_subject) > 1500:
             s1, s2 = split_long_paragraph(test_subject)
             if len(s1) == 0 or len(s2) == 0:
