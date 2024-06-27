@@ -1,7 +1,7 @@
 import copy
 import logging
 import os
-import tqdm
+from tqdm import tqdm
 from abc import abstractclassmethod
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from threading import Lock
@@ -252,7 +252,7 @@ class TreeBuilder:
             }
 
             leaf_nodes = {}
-            for future in tqdm(as_completed(future_nodes)):
+            for future in tqdm(as_completed(future_nodes), total=len(future_nodes):
                 index, node = future.result()
                 leaf_nodes[index] = node
 
@@ -277,7 +277,7 @@ class TreeBuilder:
             leaf_nodes = self.multithreaded_create_leaf_nodes(chunks)
         else:
             leaf_nodes = {}
-            for index, text in tqdm(enumerate(chunks)):
+            for index, text in tqdm(enumerate(chunks), total=len(chunks):
                 __, node = self.create_node(index, text)
                 leaf_nodes[index] = node
 
