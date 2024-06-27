@@ -172,11 +172,11 @@ class TreeBuilder:
         if children_indices is None:
             children_indices = set()
           
-        print(type(list(self.embedding_models.items())[0]))
-        print(type(list(self.embedding_models.items())[0][0]))
+        print("type[0]", type(list(self.embedding_models.items())[0]))
+        print("type[0][0]", type(list(self.embedding_models.items())[0][0]))
 
         embeddings = {
-            model_name: model.create_embedding(text)
+            str(model_name): model.create_embedding(str(text))
             for model_name, model in self.embedding_models.items()
         }
         return (index, Node(text, index, children_indices, embeddings))
@@ -192,7 +192,7 @@ class TreeBuilder:
             List[float]: The generated embeddings.
         """
         return self.embedding_models[self.cluster_embedding_model].create_embedding(
-            text
+            str(text)
         )
 
     def summarize(self, context, max_tokens=150) -> str:
