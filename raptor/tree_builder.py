@@ -190,7 +190,7 @@ class TreeBuilder:
             List[float]: The generated embeddings.
         """
         return self.embedding_models[self.cluster_embedding_model].create_embedding(
-            str(text)
+            text
         )
 
     def summarize(self, context, max_tokens=150) -> str:
