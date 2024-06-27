@@ -1,5 +1,6 @@
 import logging
 import pickle
+from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
 from threading import Lock
 from typing import Dict, List, Set
@@ -48,7 +49,7 @@ class ClusterTreeBuilder(TreeBuilder):
         self.clustering_algorithm = config.clustering_algorithm
         self.clustering_params = config.clustering_params
 
-        logging.info(
+        print(
             f"Successfully initialized ClusterTreeBuilder with Config {config.log_config()}"
         )
 
@@ -59,7 +60,7 @@ class ClusterTreeBuilder(TreeBuilder):
         layer_to_nodes: Dict[int, List[Node]],
         use_multithreading: bool = False,
     ) -> Dict[int, Node]:
-        logging.info("Using Cluster TreeBuilder")
+        print("Using Cluster TreeBuilder")
 
         next_node_index = len(all_tree_nodes)
 
@@ -73,7 +74,7 @@ class ClusterTreeBuilder(TreeBuilder):
                 max_tokens=summarization_length,
             )
 
-            logging.info(
+            print(
                 f"Node Texts Length: {len(self.tokenizer.encode(node_texts))}, Summarized Text Length: {len(self.tokenizer.encode(summarized_text))}"
             )
 
@@ -84,17 +85,17 @@ class ClusterTreeBuilder(TreeBuilder):
             with lock:
                 new_level_nodes[next_node_index] = new_parent_node
 
-        for layer in range(self.num_layers):
+        for layer in tqdm(range(self.num_layers)):
 
             new_level_nodes = {}
 
-            logging.info(f"Constructing Layer {layer}")
+            print(f"Constructing Layer {layer}")
 
             node_list_current_layer = get_node_list(current_level_nodes)
 
             if len(node_list_current_layer) <= self.reduction_dimension + 1:
                 self.num_layers = layer
-                logging.info(
+                print(
                     f"Stopping Layer construction: Cannot Create More Layers. Total Layers in tree: {layer}"
                 )
                 break
@@ -109,7 +110,7 @@ class ClusterTreeBuilder(TreeBuilder):
             lock = Lock()
 
             summarization_length = self.summarization_length
-            logging.info(f"Summarization Length: {summarization_length}")
+            print(f"Summarization Length: {summarization_length}")
 
             if use_multithreading:
                 with ThreadPoolExecutor() as executor:
