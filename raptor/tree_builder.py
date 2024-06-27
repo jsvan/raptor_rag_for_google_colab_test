@@ -171,12 +171,10 @@ class TreeBuilder:
         """
         if children_indices is None:
             children_indices = set()
-          
-        print("type[0]", type(list(self.embedding_models.items())[0]))
-        print("type[0][0]", type(list(self.embedding_models.items())[0][0]))
+        
 
         embeddings = {
-            str(model_name): model.create_embedding(str(text))
+            model_name: model.create_embedding(text)
             for model_name, model in self.embedding_models.items()
         }
         return (index, Node(text, index, children_indices, embeddings))
