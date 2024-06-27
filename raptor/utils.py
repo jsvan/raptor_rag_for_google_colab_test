@@ -55,7 +55,7 @@ def recursively_split_paragraphs(paragraph_list, maxlen=1500):
         elif len(test_subject) < 150:
             pass
         else:
-            good.append(test_subject.encode('ascii',errors='ignore'))
+            good.append(test_subject)#.encode('ascii',errors='ignore'))
     return good
 
     
