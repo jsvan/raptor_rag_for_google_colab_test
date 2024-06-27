@@ -6,6 +6,5 @@ sentence-transformers
 tenacity
 tiktoken
 torch
-transformers
 umap-learn
 urllib3
