@@ -72,6 +72,8 @@ def split_text(
     Returns:
         List[str]: A list of text chunks.
     """
+    """
+    # My way, splits by paragraph
     chunks = []
     for essay in essays:
         chunks.extend(essay.split('\n'))
@@ -80,11 +82,11 @@ def split_text(
     print("Finished preparing texts. Length of", len(finaltexts))
     
     return finaltexts
-
+    """
 
     """
     jsv: Old way, not for my purposes.
-    
+    """
     # Split the text into sentences using multiple delimiters
     delimiters = [".", "!", "?", "\n"]
     regex_pattern = "|".join(map(re.escape, delimiters))
@@ -129,7 +131,7 @@ def split_text(
         if current_chunk:
             chunks.append(" ".join(current_chunk))
     return chunks
-    """
+    
 
 
 def distances_from_embeddings(
