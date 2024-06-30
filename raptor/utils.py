@@ -130,6 +130,7 @@ def split_text(
         # Add the last chunk if it's not empty
         if current_chunk:
             chunks.append(" ".join(current_chunk))
+    chunks = [chunk for chunk in chunks if chunk.strip()]
     return chunks
     
 
